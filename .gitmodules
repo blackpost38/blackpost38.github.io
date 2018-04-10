@@ -1,0 +1,3 @@
+[submodule "themes/prontera"]
+	path = themes/prontera
+	url = https://github.com/blackpost38/hexo-theme-prontera.git
