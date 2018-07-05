@@ -1,5 +1,5 @@
 ---
-title: React 컴포넌트 가독성 높이기
+title: Improving readability of your React component
 tags:
   - MERN
   - react
