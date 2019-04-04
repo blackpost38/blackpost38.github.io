@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> unable to find a live medium containing a live file system 에러 메시지 · Dev Blog</title><meta name="description" content="unable to find a live medium containing a live file system 에러 메시지 - Hyunju Choi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://blackpost38.github.io/atom.xml" title="Dev Blog"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">Dev Blog</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><ul class="shortcut-icons"><a href="https://github.com/blackpost38" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">unable to find a live medium containing a live file system 에러 메시지</h1><div class="post-info">Jan 20, 2018</div><div class="post-content"><h1 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a><a href="#이슈" title="이슈"></a>이슈</h1><h2 id="현상"><a href="#현상" class="headerlink" title="현상"></a><a href="#현상" title="현상"></a>현상</h2><ul>
+<li>Ubuntu 16 설치 용 USB를 컴퓨터에 꽂고 인스톨을 하면 다음과 같은 에러 메시지가 뜬다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(initramfs) unable to find a live medium containing a live file system</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="원인"><a href="#원인" class="headerlink" title="원인"></a><a href="#원인" title="원인"></a>원인</h2><ul>
+<li>다양해서 파악하기 힘들다. (참조에서 살펴보자)</li>
+</ul>
+<h1 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a><a href="#해결법" title="해결법"></a>해결법</h1><ul>
+<li>하나하나 원인이 될만한 것을 골라서 시도하는 수밖에 없는 것 같다.</li>
+<li><p>그중에서 기존에 USB 3.0을 2.0으로 바꿔서 부팅 USB를 만드니 정상적으로 설치가 되었다.</p>
+<pre><code>*   USB 포트에만 버전이 있는 줄 알았고, USB 자체에 버전이 있는 줄 몰랐다.
+</code></pre></li>
+<li><p>실제로 시도했던 것들</p>
+<pre><code>*   우분투 설치 파일 이미지에 문제가 있다고 생각해서 다시 다운로드 받음
+</code></pre><ul>
+<li>USB 자체에 문제가 있다고 생각해서 다른 USB로도 만들어봄 (안타깝게도 둘 다 USB3.0이었다)</li>
+<li>부팅 디스크를 만드는 소프트웨어에 문제가 있다고 가정</li>
+</ul>
+</li>
+</ul>
+<h1 id="참조"><a href="#참조" class="headerlink" title="참조"></a><a href="#참조" title="참조"></a>참조</h1><ul>
+<li><a href="https://forum.ubuntu-kr.org/viewtopic.php?t=27386" target="_blank" rel="noopener">에러 메시지 원인과 해결책 1</a>*   <a href="https://askubuntu.com/questions/15425/error-when-installing-unable-to-find-a-medium-containing-a-live-file-system" target="_blank" rel="noopener">에러 메시지 원인과 해결책 2</a></li>
+<li><a href="http://tip.daum.net/question/89798349" target="_blank" rel="noopener">USB 2.0과 3.0 차이</a></li>
+<li><a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos" target="_blank" rel="noopener">Mac OS에서 Software로 Ubuntu 부팅 디스크 만들기</a></li>
+<li><a href="http://sergeswin.com/1178" target="_blank" rel="noopener">Mac OS에서 CLI로 Ubuntu 부팅 디스크 만들기</a></li>
+</ul>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = 'blackpost38';
+var disqus_identifier = '2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/';
+var disqus_title = 'unable to find a live medium containing a live file system 에러 메시지';
+var disqus_url = 'https://blackpost38.github.io/2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//blackpost38.disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/04/10/lergacy-react-common-component/" class="prev">PREV</a><a href="/2018/01/13/networking-docker-container/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 - 2019 <a href="https://blackpost38.github.io">Hyunju Choi</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"blackpost38",'auto');ga('send','pageview');</script></body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> -Legacy- React UI Common Component · Dev Blog</title><meta name="description" content="-Legacy- React UI Common Component - Hyunju Choi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://blackpost38.github.io/atom.xml" title="Dev Blog"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">Dev Blog</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><ul class="shortcut-icons"><a href="https://github.com/blackpost38" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">-Legacy- React UI Common Component</h1><div class="post-info">Apr 10, 2018</div><div class="post-content"><h2 id="UI-공통-컴포넌트-다시-생각해보기"><a href="#UI-공통-컴포넌트-다시-생각해보기" class="headerlink" title="UI 공통 컴포넌트 다시 생각해보기"></a>UI 공통 컴포넌트 다시 생각해보기</h2><ul>
+<li>기술 면접 때, 공통 컴포넌트 개발과 관리에 대해 질문을 받았다.</li>
+<li>당시 비용 관련해서 부정적인 측면만 말했는데, 정리를 안하고 말해서 좀 아쉬웠다.</li>
+<li>그래서 다시 장단점을 정리해 보고, 만약 개발을 하게 된다면 이런 식으로 하면 좋을 것 같다고 계획을 세워봤다.</li>
+</ul>
+<h2 id="내가-생각하는-UI-공통-컴포넌트-장단점"><a href="#내가-생각하는-UI-공통-컴포넌트-장단점" class="headerlink" title="내가 생각하는 UI 공통 컴포넌트 장단점"></a>내가 생각하는 UI 공통 컴포넌트 장단점</h2><ul>
+<li>장점<ul>
+<li>재사용 가능<ul>
+<li>하나의 컴포넌트가 여러 군데 사용됨</li>
+<li>변경사항이 있어도 컴포넌트 하나만 고치면 된다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>단점<ul>
+<li>비용<ul>
+<li>컴포넌트의 공통 요소를 찾고 추출한 후 새로운 컴포넌트를 만들어야 한다.<ul>
+<li>장기적으론 장점이 될 수도 있지만…</li>
+</ul>
+</li>
+<li>잘 만들어야 한다.<ul>
+<li>잘 만들어야 자주 사용한다.</li>
+</ul>
+</li>
+<li>계속 관리도 해줘야 한다.<ul>
+<li>공통인 만큼 나만 쓰는게 아니다.</li>
+<li>변경이나 추가 사항이 있으면, 팀원들과 협의를 거쳐야 한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="새롭게-UI-공통-컴포넌트-개발한다면"><a href="#새롭게-UI-공통-컴포넌트-개발한다면" class="headerlink" title="새롭게 UI 공통 컴포넌트 개발한다면"></a>새롭게 UI 공통 컴포넌트 개발한다면</h2><ul>
+<li>공통 컴포넌트를 베이직과 컴플렉스로 나누자.<ul>
+<li>베이직은 말 그대로 기본 컴포넌트<ul>
+<li>버튼, 모달, 폼 등</li>
+<li>react-bootstrap 이나 matrial-ui의 컴포넌트를 참조해서 진행할 수 있을 것 같다.</li>
+</ul>
+</li>
+<li>컴플렉스<ul>
+<li>특정 정보에 맞게 여러 요소들이 조합되고 커스터마이징 된 컴포넌트: 테이블, 리스트, 차트, 확인창 등.</li>
+<li>이 컴포넌트는 유연하지 않고, 특정 경우에만 제대로 동작하도록 만든다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>변경 사항이 있을 경우: 관리 측면<ul>
+<li>베이직 컴포넌트의 경우 유연하게 만들어야 하므로 팀원들끼리 조율이 필요한 것 같다.<ul>
+<li>state, props, event handler 등 합의를 거쳐서 기능을 변경하거나 추가하자.</li>
+</ul>
+</li>
+<li>컴플렉스 컴포넌트 경우, 변경 사항에 맞추자.<ul>
+<li>변경을 거듭하다가 공통 요소가 더이상 보이지 않을 경우 과감히 빼버리자.</li>
+</ul>
+</li>
+<li>테스트는 꼼꼼히 하자.</li>
+<li>비용은 감수하자.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>시간이 제한되어 있다면, 컴플렉스 컴포넌트만 관리하는 게 나을 것 같다.</p>
+</blockquote>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = 'blackpost38';
+var disqus_identifier = '2018/04/10/lergacy-react-common-component/';
+var disqus_title = '-Legacy- React UI Common Component';
+var disqus_url = 'https://blackpost38.github.io/2018/04/10/lergacy-react-common-component/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//blackpost38.disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/12/16/react-common-component/" class="prev">PREV</a><a href="/2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 - 2019 <a href="https://blackpost38.github.io">Hyunju Choi</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"blackpost38",'auto');ga('send','pageview');</script></body></html>

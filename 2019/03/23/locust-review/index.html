@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Locust 사용 후기 · Dev Blog</title><meta name="description" content="Locust 사용 후기 - Hyunju Choi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://blackpost38.github.io/atom.xml" title="Dev Blog"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">Dev Blog</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><ul class="shortcut-icons"><a href="https://github.com/blackpost38" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Locust 사용 후기</h1><div class="post-info">Mar 23, 2019</div><div class="post-content"><h2 id="목적"><a href="#목적" class="headerlink" title="목적"></a>목적</h2><p>최근 <strong>Locust</strong>를 이용해서 stress test를 한 후기를 남긴다.</p>
+<h2 id="Locust-사용한-이유"><a href="#Locust-사용한-이유" class="headerlink" title="Locust 사용한 이유"></a>Locust 사용한 이유</h2><ul>
+<li>시스템을 인수인계 받는 도중에 테스트에 대한 니즈가 생김<ul>
+<li>API가 제대로 작동을 하는가?</li>
+<li>어느 정도 부하를 견딜 수 있으며, 과도한 부하 상태에서 시스템은 어떤 행동을 하는가?</li>
+</ul>
+</li>
+<li>어느 정도 부하를 견디는지 확인하기 위해 스트레스 테스트 툴을 검색하기 시작</li>
+<li>JMeter, Grinder 등 많이 쓰이는 툴이 있었지만, Locust를 선택<ul>
+<li>python으로 테스트 코드를 작성할 수 있다.</li>
+<li>사용법이 간단하여, 금방 익힐 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Locust-사용-팁"><a href="#Locust-사용-팁" class="headerlink" title="Locust 사용 팁"></a>Locust 사용 팁</h2><ul>
+<li>사용법은 단순하며, 문서보면 누구나 다 따라할 수 있는 수준<ul>
+<li>Locust를 고른 이유이기도 함</li>
+<li>때문에 사용법을 정리하기 보다는 팁을 남기는 것이 낫다고 판단</li>
+</ul>
+</li>
+<li>다른 툴에 비해 낮은 RPS<ul>
+<li>하나의 머신에서 수천명의 사용자의 행동을 시뮬레이션할 수 있도록 만들어진 툴</li>
+<li>또한, python 코드로 사용자의 행동 시나리오를 만드는 것이 가능</li>
+<li>따라서 단순 RPS 수치 측정 용도 보다는 위의 두 특징을 고려해서 Locust를 사용할 것인지 판단하는 것이 좋을듯</li>
+<li>물론 적당한 RPS가 나오므로 큰 문제는 없다고 생각<ul>
+<li>AWS 상에서 <code>t2.micro</code>를 사용했을때, 약 500 rps 정도가 나옴</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>멀티 코어 &amp; Docker를 사용해 Master&amp;Slave를 구축하면 성능을 최대한 끌어올릴 수 있다.<ul>
+<li><code>docker-compose</code> 용 locust는 <a href="https://github.com/sernst/locusts" target="_blank" rel="noopener">sernst/locusts</a>을 사용했다.<ul>
+<li>간단한 방법으로 Master와 Slave를 지정할 수 있다.</li>
+</ul>
+</li>
+<li>그러나 극적인 효과는 없다 =&gt; <code>t2.micro</code>로 약 600 ~ 700 rps 정도가 나오는 수준</li>
+<li>AWS를 사용하는 환경이라면, 여러 인스턴스로 Locust를 연결하면 퍼포먼스가 많이 오른다.<ul>
+<li><code>t2.micro</code> 인스턴스를 15개 정도 연결 시켜서 7000 rps까지 찍어봤다.</li>
+</ul>
+</li>
+<li>성능이 좋은 인스턴스를 여러 개 연결하더라도, 하나의 Locust만 실행하면 성능이 그렇게 좋아지진 않는다.<ul>
+<li>4 core 짜리를 여러개 돌려봤는데 rps가 그렇게 좋아지지 않더라</li>
+<li>알고보니 CPU를 하나만 소모하기 때문에 극적으로 퍼포먼스를 끌어올릴 수 없었던 것</li>
+<li>Docker를 여러개 실행하여 CPU를 최대한 활용하는 것이 대안이 될 것</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>그런데 500 rps 정도면 왠만한 서비스의 부하 테스트는 가능하다는 생각<ul>
+<li>실제로 테스트 대상이었던 시스템은 최대 100rps를 찍는 수준</li>
+</ul>
+</li>
+<li>앞서 언급한 것보다 중요한건 시나리오 테스트 기능<ul>
+<li>테스트 대상 시스템은 복잡한 기능이 없어 시나리오를 코드로 작성해서 테스트 해보진 않음</li>
+<li>Locust의 강점은 코드로 어느 정도 사용자의 행동을 테스트할 수 있다는 것<ul>
+<li>페이지 이동, 어떤 데이터 호출 등</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = 'blackpost38';
+var disqus_identifier = '2019/03/23/locust-review/';
+var disqus_title = 'Locust 사용 후기';
+var disqus_url = 'https://blackpost38.github.io/2019/03/23/locust-review/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//blackpost38.disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/12/16/react-common-component/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 - 2019 <a href="https://blackpost38.github.io">Hyunju Choi</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"blackpost38",'auto');ga('send','pageview');</script></body></html>

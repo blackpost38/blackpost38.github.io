@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blackpost.xyz/"/>
+  <link href="https://blackpost38.github.io/"/>
   <updated>2019-04-04T11:27:27.804Z</updated>
-  <id>http://blackpost.xyz/</id>
+  <id>https://blackpost38.github.io/</id>
   
   <author>
     <name>Hyunju Choi</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Locust 사용 후기</title>
-    <link href="http://blackpost.xyz/2019/03/23/locust-review/"/>
-    <id>http://blackpost.xyz/2019/03/23/locust-review/</id>
+    <link href="https://blackpost38.github.io/2019/03/23/locust-review/"/>
+    <id>https://blackpost38.github.io/2019/03/23/locust-review/</id>
     <published>2019-03-23T07:58:05.000Z</published>
     <updated>2019-04-04T11:27:27.804Z</updated>
     
@@ -36,14 +36,14 @@
     </summary>
     
     
-      <category term="python, django, load test, stress test" scheme="http://blackpost.xyz/tags/python-django-load-test-stress-test/"/>
+      <category term="python, django, load test, stress test" scheme="https://blackpost38.github.io/tags/python-django-load-test-stress-test/"/>
     
   </entry>
   
   <entry>
     <title>react-common-component</title>
-    <link href="http://blackpost.xyz/2018/12/16/react-common-component/"/>
-    <id>http://blackpost.xyz/2018/12/16/react-common-component/</id>
+    <link href="https://blackpost38.github.io/2018/12/16/react-common-component/"/>
+    <id>https://blackpost38.github.io/2018/12/16/react-common-component/</id>
     <published>2018-12-16T03:57:17.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
@@ -59,16 +59,42 @@
     </summary>
     
     
-      <category term="MERN" scheme="http://blackpost.xyz/tags/MERN/"/>
+      <category term="MERN" scheme="https://blackpost38.github.io/tags/MERN/"/>
     
-      <category term="react" scheme="http://blackpost.xyz/tags/react/"/>
+      <category term="react" scheme="https://blackpost38.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>-Legacy- React UI Common Component</title>
+    <link href="https://blackpost38.github.io/2018/04/10/lergacy-react-common-component/"/>
+    <id>https://blackpost38.github.io/2018/04/10/lergacy-react-common-component/</id>
+    <published>2018-04-10T03:56:39.000Z</published>
+    <updated>2019-04-04T11:35:51.609Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="UI-공통-컴포넌트-다시-생각해보기"><a href="#UI-공통-컴포넌트-다시-생각해보기" class="headerlink" title="UI 공통 컴포넌트 다시 생각해보기"></a>UI 공통 컴포넌트 다시 생각해보기</h2><ul><li>기술 면접 때, 공통 컴포넌트 개발과 관리에 대해 질문을 받았다.</li><li>당시 비용 관련해서 부정적인 측면만 말했는데, 정리를 안하고 말해서 좀 아쉬웠다.</li><li>그래서 다시 장단점을 정리해 보고, 만약 개발을 하게 된다면 이런 식으로 하면 좋을 것 같다고 계획을 세워봤다.</li></ul><h2 id="내가-생각하는-UI-공통-컴포넌트-장단점"><a href="#내가-생각하는-UI-공통-컴포넌트-장단점" class="headerlink" title="내가 생각하는 UI 공통 컴포넌트 장단점"></a>내가 생각하는 UI 공통 컴포넌트 장단점</h2><ul><li>장점<ul><li>재사용 가능<ul><li>하나의 컴포넌트가 여러 군데 사용됨</li><li>변경사항이 있어도 컴포넌트 하나만 고치면 된다.</li></ul></li></ul></li><li>단점<ul><li>비용<ul><li>컴포넌트의 공통 요소를 찾고 추출한 후 새로운 컴포넌트를 만들어야 한다.<ul><li>장기적으론 장점이 될 수도 있지만…</li></ul></li><li>잘 만들어야 한다.<ul><li>잘 만들어야 자주 사용한다.</li></ul></li><li>계속 관리도 해줘야 한다.<ul><li>공통인 만큼 나만 쓰는게 아니다.</li><li>변경이나 추가 사항이 있으면, 팀원들과 협의를 거쳐야 한다.</li></ul></li></ul></li></ul></li></ul><h2 id="새롭게-UI-공통-컴포넌트-개발한다면"><a href="#새롭게-UI-공통-컴포넌트-개발한다면" class="headerlink" title="새롭게 UI 공통 컴포넌트 개발한다면"></a>새롭게 UI 공통 컴포넌트 개발한다면</h2><ul><li>공통 컴포넌트를 베이직과 컴플렉스로 나누자.<ul><li>베이직은 말 그대로 기본 컴포넌트<ul><li>버튼, 모달, 폼 등</li><li>react-bootstrap 이나 matrial-ui의 컴포넌트를 참조해서 진행할 수 있을 것 같다.</li></ul></li><li>컴플렉스<ul><li>특정 정보에 맞게 여러 요소들이 조합되고 커스터마이징 된 컴포넌트: 테이블, 리스트, 차트, 확인창 등.</li><li>이 컴포넌트는 유연하지 않고, 특정 경우에만 제대로 동작하도록 만든다.</li></ul></li></ul></li><li>변경 사항이 있을 경우: 관리 측면<ul><li>베이직 컴포넌트의 경우 유연하게 만들어야 하므로 팀원들끼리 조율이 필요한 것 같다.<ul><li>state, props, event handler 등 합의를 거쳐서 기능을 변경하거나 추가하자.</li></ul></li><li>컴플렉스 컴포넌트 경우, 변경 사항에 맞추자.<ul><li>변경을 거듭하다가 공통 요소가 더이상 보이지 않을 경우 과감히 빼버리자.</li></ul></li><li>테스트는 꼼꼼히 하자.</li><li>비용은 감수하자.</li></ul></li></ul><blockquote><p>시간이 제한되어 있다면, 컴플렉스 컴포넌트만 관리하는 게 나을 것 같다.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;UI-공통-컴포넌트-다시-생각해보기&quot;&gt;&lt;a href=&quot;#UI-공통-컴포넌트-다시-생각해보기&quot; class=&quot;headerlink&quot; title=&quot;UI 공통 컴포넌트 다시 생각해보기&quot;&gt;&lt;/a&gt;UI 공통 컴포넌트 다시 생각해보기&lt;/h2&gt;&lt;ul&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="MERN" scheme="https://blackpost38.github.io/tags/MERN/"/>
+    
+      <category term="react" scheme="https://blackpost38.github.io/tags/react/"/>
     
   </entry>
   
   <entry>
     <title>unable to find a live medium containing a live file system 에러 메시지</title>
-    <link href="http://blackpost.xyz/2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/"/>
-    <id>http://blackpost.xyz/2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/</id>
+    <link href="https://blackpost38.github.io/2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/"/>
+    <id>https://blackpost38.github.io/2018/01/20/unable-to-find-a-live-medium-containing-a-live-file-system-error-message/</id>
     <published>2018-01-20T11:20:54.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
@@ -84,16 +110,16 @@
     </summary>
     
     
-      <category term="DevOps" scheme="http://blackpost.xyz/tags/DevOps/"/>
+      <category term="DevOps" scheme="https://blackpost38.github.io/tags/DevOps/"/>
     
-      <category term="Ubuntu" scheme="http://blackpost.xyz/tags/Ubuntu/"/>
+      <category term="Ubuntu" scheme="https://blackpost38.github.io/tags/Ubuntu/"/>
     
   </entry>
   
   <entry>
     <title>도커 컨테이너 끼리 통신</title>
-    <link href="http://blackpost.xyz/2018/01/13/networking-docker-container/"/>
-    <id>http://blackpost.xyz/2018/01/13/networking-docker-container/</id>
+    <link href="https://blackpost38.github.io/2018/01/13/networking-docker-container/"/>
+    <id>https://blackpost38.github.io/2018/01/13/networking-docker-container/</id>
     <published>2018-01-13T12:18:05.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
@@ -109,16 +135,16 @@
     </summary>
     
     
-      <category term="DevOps" scheme="http://blackpost.xyz/tags/DevOps/"/>
+      <category term="DevOps" scheme="https://blackpost38.github.io/tags/DevOps/"/>
     
-      <category term="docker" scheme="http://blackpost.xyz/tags/docker/"/>
+      <category term="docker" scheme="https://blackpost38.github.io/tags/docker/"/>
     
   </entry>
   
   <entry>
     <title>Array.sort 부적절한 예제</title>
-    <link href="http://blackpost.xyz/2018/01/13/array-sort-bad-example/"/>
-    <id>http://blackpost.xyz/2018/01/13/array-sort-bad-example/</id>
+    <link href="https://blackpost38.github.io/2018/01/13/array-sort-bad-example/"/>
+    <id>https://blackpost38.github.io/2018/01/13/array-sort-bad-example/</id>
     <published>2018-01-13T12:18:04.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
@@ -136,43 +162,44 @@
     </summary>
     
     
-      <category term="Web Fundamental" scheme="http://blackpost.xyz/tags/Web-Fundamental/"/>
+      <category term="Web Fundamental" scheme="https://blackpost38.github.io/tags/Web-Fundamental/"/>
     
-      <category term="javascript" scheme="http://blackpost.xyz/tags/javascript/"/>
+      <category term="javascript" scheme="https://blackpost38.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
-    <title>Nightwatch로 E2E 테스트 자동화 경험담</title>
-    <link href="http://blackpost.xyz/2018/01/13/experience-about-e2e-testing-with-nightwatch/"/>
-    <id>http://blackpost.xyz/2018/01/13/experience-about-e2e-testing-with-nightwatch/</id>
+    <title>데이터를 Redux store 대신 React state에 저장해도 될까요?</title>
+    <link href="https://blackpost38.github.io/2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/"/>
+    <id>https://blackpost38.github.io/2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/</id>
     <published>2018-01-13T12:18:04.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="왜-테스트-해야-하는가"><a href="#왜-테스트-해야-하는가" class="headerlink" title="왜 테스트 해야 하는가?"></a><a href="#왜-테스트-해야-하는가" title="왜 테스트 해야 하는가?"></a>왜 테스트 해야 하는가?</h2><ul><li><p>새로운 비지니스를 준비해야 함.</p><pre><code>*   그런데 인력이 충분치 않음.</code></pre></li><li><p>그럼 어떻게 해야 할까?</p><pre><code>*   새로운 인력을 추가하거나 기존 인력이 하는 일을 더는 방법 밖에 없음.</code></pre><ul><li>새로운 인력을 추가하는 일은 이미 채용 공고를 올려 진행 중.</li></ul></li><li><p>기존 인력이 하는 일을 어떻게 덜까?</p><pre><code>*   반복되는 업무는 자동화를 시켜버리자.</code></pre></li><li><p>반복되는 업무는 뭐가 있을까?</p><pre><code>*   고객사 납품 직전에 제품을 테스트 하는 일 (이밖에도 많겠지만)</code></pre><ul><li>그래! 제품 테스트를 자동화 해보자</li></ul></li><li><p>제품 테스트는 어떻게 했었나?</p><pre><code>*   제품 테스트는 고객 요구사항이나 새로운 기능 위주로 테스트.</code></pre></li><li><p>여기서 문제점은 무엇인가?</p><pre><code>*   기존에 되던 기능들이 안되면 정말 난감.</code></pre><ul><li>만약 안 될 경우 기능 고치고 테스트하고 납품하는 일을 다시 한 번 해야함.</li><li>그렇다고 기존 기능까지 매번 반복해서 테스트 하는 것은 괴로운 일.</li></ul></li><li>올~ 제품 테스트 자동화 의미가 있는 것 같음. 한 번 해보자.</li></ul><h2 id="어떤-것을-테스트-할-것인가"><a href="#어떤-것을-테스트-할-것인가" class="headerlink" title="어떤 것을 테스트 할 것인가?"></a><a href="#어떤-것을-테스트-할-것인가" title="어떤 것을 테스트 할 것인가?"></a>어떤 것을 테스트 할 것인가?</h2><ul><li><p>‘최소한 이것은 테스트해야 된다’ 정도로 중요한 기능(주관적인 것이라…)을 테스트 하자.</p><pre><code>*   논의를 거쳐서 테스트할 기능을 쭉 리스팅했다.</code></pre><ul><li>그리고 기능을 토대로 테스트 시나리오 작성.</li></ul></li></ul><h2 id="어떻게-구현할-것인가"><a href="#어떻게-구현할-것인가" class="headerlink" title="어떻게 구현할 것인가?"></a><a href="#어떻게-구현할-것인가" title="어떻게 구현할 것인가?"></a>어떻게 구현할 것인가?</h2><ul><li>이미 우리는 Nightwatch를 이용하여 간단한 시나리오를 작성하고 E2E 테스트를 돌리고 있는 상태.</li><li>여기에 시나리오를 추가해서 앞서 리스팅한 내용을 모두 테스트할 수 있게 만들자.</li><li><p>E2E 테스트 코드를 작성할 때에는 아래를 항상 생각해보자.</p><pre><code>*   E2E 테스트의 기본을 지킨다.        *   E2E 테스트는 내부 구현을 고려하지 않고 오로지 기능을 테스트 하는 것이다.*   E2E 테스트는 UAT(user-acceptence-testing)이다.                *   UAT는 유저가 제품을 사용하는데 문제가 없는지를 테스트 하는 것이다.    *   예를 들어, 오탈자나 세세한 오작동은 신경쓰지 않고, 시스템이 깨지거나, 에러가 나서 더이상 진행을 할 수 없는 지를 테스트 한다.                        *   참고: [end-to-end-testing-with-nightwatch-js-node-js-at-scale](https://blog.risingstack.com/end-to-end-testing-with-nightwatch-js-node-js-at-scale)</code></pre><ul><li>코드는 읽기 쉬워야 한다.</li><li><p>모든 시나리오는 독립적으로 실행될 수 있다.</p><pre><code>*   시나리오가 다른 시나리오에 종속되면, 테스트 해보고 싶은 시나리오 하나 돌리는 것이 귀찮은 일이 된다.</code></pre><ul><li><p>그런데 막상 해보니 테스트 하고자 하는 기능에 선행되어야 하는 조건이 많은 경우가 있었다.</p><pre><code>*   스텝7을 테스트 하기 위해선 스텝1 ~ 6이 먼저 선행되는 것처럼…</code></pre></li><li>결국은 테스트 시나리오를 실행하기 전에, 테스트할 기능이 필요한 내용들을 미리 다 만들어 두는 시나리오를 따로 작성했다.</li></ul></li><li><p>하나의 시나리오는 하나의 목적만 갖는다 =&gt; 복잡하게 만들지 않는다.</p><pre><code>*   중간에 다른 길로 세지 않으려고…</code></pre></li><li><p>시나리오에서 만들어진 데이터는 제거한다.</p><pre><code>*   필요 없으니까!</code></pre></li><li><p>테스트를 위해 로직을 바꾸진 않는다.</p><pre><code>*   코드 자체를 바꾸고 싶진 않았지만, selector를 편하게 가져가기 위해 id를 꽤많이 추가했다.</code></pre></li></ul></li></ul><h2 id="구현하면서-도움이-되었던-것"><a href="#구현하면서-도움이-되었던-것" class="headerlink" title="구현하면서 도움이 되었던 것"></a><a href="#구현하면서-도움이-되었던-것" title="구현하면서 도움이 되었던 것"></a>구현하면서 도움이 되었던 것</h2><ul><li><p>E2E 테스트 범위 설정</p><pre><code>*   사용자가 어플리케이션 이용 목적에 해당되는 내용만 테스트 한다.</code></pre><ul><li>세세한 테스트는 유닛 테스트가 가져가야 할 문제.</li><li><p>만약 세세한 테스트 까지 작성하려면, 테스트 돌리는 시간과 이를 작성하는 비용이 굉장히 많이 든다.</p><pre><code>*   유닛테스트와 결합하여 사용할 수 있긴 하다. [unit-testing](http://nightwatchjs.org/guide#unit-testing)</code></pre></li></ul></li><li><p>페이지 오브젝트 활용</p><pre><code>*   페이지 별로 테스트를 구성할 수 있음.</code></pre><ul><li>페이지 오브젝트에 커맨드를 정의 하면 여러 시나리오에서 가져다 사용하기 편함.</li><li><p>시나리오를 작성할 때 사용자 중심으로 코드를 작성하는데 도움이 됨.</p><pre><code>*   페이지 오브젝트의 모든 커맨드 네이밍을 사용자 중심으로 함.</code></pre><ul><li><p>그 안의 내용은 Nightwatch의 API 같은 프로그래밍 요소를 사용하여 테스트를 실행.</p><pre><code>*   예를 들어, `.uploadDataSource` 커맨드를 선언함.</code></pre><ul><li>실제하는 일은 type이 file인 input 엘리먼트의 data 속성을 변경하는 일.</li></ul></li><li>이렇게 구성하면 시나리오 내용만 보고도 Nightwatch가 어떤 식으로 작동될지 예상할 수 있음.</li></ul></li><li><p>또한, 페이지 오브젝트에서 엘리먼트 또는 섹션을 제공해주는데, 복잡한 Selector를 어떠한 엘리먼트인지 정의할 수 있어서 코드 읽기가 수월해짐.</p><pre><code>*   실제로 `.someClass &amp;gt; div &amp;gt; span` 이런 것만 봐서는 어떤 엘리먼트인지 알기 어려움</code></pre><ul><li>엘리먼트나 섹션을 이용해서 <code>infoText: &amp;#39;.someClass &amp;gt; div &amp;gt; span&amp;#39;</code> 같이 정의해주는 것이 훨씬 명확함.</li><li>각 페이지마다 공통 되는 요소들(ProgressBar, Tab 등)은 Common 페이지를 하나 선언해서 공통적으로 사용할 수 있게 만들어 놓음.</li></ul></li><li>참고: <a href="http://nightwatchjs.org/guide#page-objects" target="_blank" rel="noopener">page-objects</a></li></ul></li><li><p>스크린샷 활용</p><pre><code>*   프로덕트의 중요한 화면의 경우는 직접 눈으로 보고 싶음 =&amp;gt; 눈으로 봐서 이상이 없는지도 확인하고 싶음.</code></pre><ul><li>이때 스크린샷 기능을 활용하면 도움이 됨.</li><li><p>특정 페이지로 가서 스크린샷 기능을 이용하여 원하는 이름으로 이미지 파일을 생성할 수 있음.</p><pre><code>*   현재 gitlab.ci E2E 파이프라인에서 E2E 테스트가 모두 끝나면, Docker를 이용하여 스크린샷들을 웹화면에서 볼 수 있게 세팅했음.</code></pre><ul><li>Docker image (image-gallery) 사용.</li></ul></li><li><p>참고</p><pre><code>*   [스크린샷](http://nightwatchjs.org/api/saveScreenshot.html)</code></pre><ul><li><a href="https://github.com/docwhat/docker-image-gallery" target="_blank" rel="noopener">Docker Image Gallery</a></li></ul></li></ul></li><li><p>Docker selenium에서 데이터 업로드 테스트</p><pre><code>*   여기서 삽질 꽤 많이 함.</code></pre><ul><li>Docker selenium을 이용하면 이상하게 파일 업로드가 되질 않았음.</li><li>해결법은 단순했음, volume을 이용하여 파일을 공유하면 되었음.</li><li><a href="https://github.com/nightwatchjs/nightwatch/issues/1064" target="_blank" rel="noopener">참고</a></li></ul></li><li><p>Gitlab Scheduled Pipeline</p><pre><code>*   E2E 테스트 파이프라인을 만들고, 매번 M.R 후에 돌리게 하니 시간을 상당히 잡아먹음. (45분 정도.)</code></pre><ul><li><p>이게 뭐가 문제가 되는데?</p><pre><code>*   (작업 성격 상) M.R이 수시로 일어남. =&amp;gt; 수시로 E2E 테스트가 실행 =&amp;gt; 45분 테스크가 수시로 실행</code></pre></li><li><p>그래서 E2E 테스트 파이프라인을 스케쥴링 해서 매일 새벽4시에 돌리게 만들어 놓음. (그냥 새벽에 돌려놓게 만듦)</p><pre><code>*   우리 솔루션은 수정되는 내용이 바로바로 고객사에 배포되는 것도 아님 =&amp;gt; 버그에 민감하게 반응하지 않아도 된다(?)</code></pre></li></ul></li></ul><h2 id="구현하고-나서-무엇이-달라졌는가"><a href="#구현하고-나서-무엇이-달라졌는가" class="headerlink" title="구현하고 나서 무엇이 달라졌는가?"></a><a href="#구현하고-나서-무엇이-달라졌는가" title="구현하고 나서 무엇이 달라졌는가?"></a>구현하고 나서 무엇이 달라졌는가?</h2><ul><li>피부로 와닿는 장점은 적어도 메인 기능을 이용하는데 어플리케이션이 깨지거나 버그가 생기는지 매일 확인할 수 있는 점.</li><li>그것도 사람이 아닌 소프트웨어가 자동으로…!</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>아래 있는 이전 글을 <a href="https://www.facebook.com/groups/1413798668880301?id=1850080511918779" target="_blank" rel="noopener">react korea</a>에 공유하고 만족할 만한 피드백을 받았다.<br>여기에 피드백을 받고 생각이 바뀐 부분이 있어서 다시 정리하고자 한다. -원본은 멘 아래에 있다.-</p></blockquote><h2 id="모든-데이터를-Redux-store에-관리하려는-이유"><a href="#모든-데이터를-Redux-store에-관리하려는-이유" class="headerlink" title="모든 데이터를 Redux store에 관리하려는 이유"></a><a href="#모든-데이터를-Redux-store에-관리하려는-이유" title="모든 데이터를 Redux store에 관리하려는 이유"></a>모든 데이터를 Redux store에 관리하려는 이유</h2><p>처음 data를 Redux store에 관리할지 React state에 관리할지에 대한 내 생각은 아래와 같았다.</p><blockquote><p><em>데이터를 Redux store에 관리하는 것이 기본이다.</em><br><em>단, 어플리케이션 전반적으로 영향을 끼치지 않는 데이터는 React state로 두어도 괜찮다</em></p></blockquote><p>이유는 사용자 행동을 action으로 하나하나 정의하고 로깅으로 남겨두면, <strong>사용자 행동을 추적할 수 있어 디버깅이 편할 것 같았다.</strong></p><p>그래서 사용자의 action에 영향을 받는 모든 데이터를 Redux store로 관리하는 것이 기본이라고 생각했다.</p><h2 id="모든-데이터를-Redux-store에-관리하면-생기는-위험"><a href="#모든-데이터를-Redux-store에-관리하면-생기는-위험" class="headerlink" title="모든 데이터를 Redux store에 관리하면 생기는 위험"></a><a href="#모든-데이터를-Redux-store에-관리하면-생기는-위험" title="모든 데이터를 Redux store에 관리하면 생기는 위험"></a>모든 데이터를 Redux store에 관리하면 생기는 위험</h2><p>그런데 이러한 방식이 <strong>오히려 데이터 변경 이력을 지저분하게 만들 수 있다</strong>는 피드백을 받았다.</p><p>데이터 변경 이력에 대한 피드백을 곰곰이 생각해보니, 고객사에 가서 log를 뒤지던 나의 모습이 떠올랐다.</p><p>유의미한 log를 찾기 위해 무의미한 log를 수없이 필터링한 것이 기억이 났다.</p><p>이와 비슷하게 너무 많은 action이 정말로 중요한 action을 가릴 것 같은 생각이 들었다.</p><p>또한, <strong>퍼포먼스에 문제가 생길 수 있다</strong>는 의견도 받았다.</p><p>예를 들어, 폼을 입력하는 것까지 Redux로 관리하면 부하가 상당할 수도 있다는 내용이었다.</p><p>퍼포먼스와 관련된 내용은 <a href="http://redux.js.org/docs/faq/Performance.html#wont-calling-all-my-reducers-for-each-action-be-slow" target="_blank" rel="noopener">Redux 문서</a>에서 아래와 같이 안내하고 있어 별로 걱정하지 않았다.</p><ol><li>JavaScript engine의 충분히 좋은 성능</li><li>action이 dispatch 될 때 대부분 reducer는 default를 실행하므로 실질적으로 실행되는 코드는 적다는 것이었다.</li><li>만약 문제가 되면 패키지(redux-ignore)를 사용해서 특정 action에 특정 reducer만 작동하게끔 만들 수도 있다는 내용이었다.</li></ol><p>결국 문제가 되면 패키지를 이용해서 reducer를 커스터마이징 하라는 건데, 생각보다 많은 사람이 그 문제를 겪고 있는 것 같다.</p><p>그래서 action, reducer를 하나하나 정의해서 퍼포먼스 문제를 일으킬 가능성을 높히고, 커스터마이징 하는 수고까지 하기엔 비용이 굉장히 크다고 판단했다.</p><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a><a href="#결론" title="결론"></a>결론</h2><p>따라서 다시 정리한 내 생각은 아래와 같다.</p><p><em>되도록이면 지역적으로 사용하는 데이터는 React state로 관리하자.</em></p><p>생각 살짝 바꾸는게 이리 힘들 줄이야</p><blockquote><p><a href="http://redux.js.org/docs/faq/OrganizingState.html#do-i-have-to-put-all-my-state-into-redux-should-i-ever-use-reacts-setstate" target="_blank" rel="noopener">Q&amp;A</a>에 이와 같은 주제를 다룬 내용이 있다.</p></blockquote><hr><blockquote><p>여기서 부터 원본이다.</p></blockquote><p>Redux store에 데이터를 추가하는 일은 단순하면서도 귀찮은 작업이다.</p><p>Action, Reducer 그리고 Action을 dispatch 하는 곳 모두 수정해야 하기 때문이다.</p><p>때문에 번거로운 작업에서 벗어나기 위해 React state의 유혹을 받는다.</p><p>하지만 규모가 큰 React state를 관리하기 위해 Redux store를 사용하지 않던가…!</p><p><em>나는 Redux store 중에서 React state로 보관해도 문제가 없는 데이터에 대해 생각했다.</em></p><p><em>그리고 고민 끝에 지역적으로 사용하는 데이터는 React state로 사용해도 되겠다는 판단을 내렸다.</em></p><blockquote><p>중요한 것은 local state는 React state로 관리해야 한다가 아닌, 관리해도 된다는 것이다.</p></blockquote><p>여기서 지역적으로 사용한다는 것은 하나 또는 일부 컴포넌트 내에서만 사용하는 데이터이다.</p><p>비유하자면 데이터를 변수라고 가정하면, 지역 변수는 React state가 될 것이며, 전역 변수는 Redux Store가 될 것이다.</p><p>이 데이터의 특징은 Redux store로 굳이 관리하지 않아도, 어플리케이션 전반에 걸쳐 사용 되지 않고 일부에만 사용된다.</p><p>예를 들어, checkbox의 checked 데이터나 modal의 show/off 데이터는 해당 컴포넌트에만 사용된다.</p><p>따라서 이러한 데이터들은 React state로 관리해도 무방하다.</p><p>validation check가 필요한 input 컴포넌트의 데이터도 전반적으로 사용되는 것은 아니므로 React state로 관리해도 된다.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;왜-테스트-해야-하는가&quot;&gt;&lt;a href=&quot;#왜-테스트-해야-하는가&quot; class=&quot;headerlink&quot; title=&quot;왜 테스트 해야 하는가?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#왜-테스트-해야-하는가&quot; title=&quot;왜 테스트 해야 하는가?&quot;&gt;&lt;/a
+        &lt;blockquote&gt;
+&lt;p&gt;아래 있는 이전 글을 &lt;a href=&quot;https://www.facebook.com/groups/1413798668880301?id=1850080511918779&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;re
       
     
     </summary>
     
     
-      <category term="MERN" scheme="http://blackpost.xyz/tags/MERN/"/>
+      <category term="MERN" scheme="https://blackpost38.github.io/tags/MERN/"/>
     
-      <category term="nightwatch.js" scheme="http://blackpost.xyz/tags/nightwatch-js/"/>
+      <category term="react" scheme="https://blackpost38.github.io/tags/react/"/>
     
-      <category term="node.js" scheme="http://blackpost.xyz/tags/node-js/"/>
+      <category term="redux" scheme="https://blackpost38.github.io/tags/redux/"/>
     
   </entry>
   
   <entry>
     <title>Nginx에 SSL 적용하기</title>
-    <link href="http://blackpost.xyz/2018/01/13/applying-ssl-to-nginx/"/>
-    <id>http://blackpost.xyz/2018/01/13/applying-ssl-to-nginx/</id>
+    <link href="https://blackpost38.github.io/2018/01/13/applying-ssl-to-nginx/"/>
+    <id>https://blackpost38.github.io/2018/01/13/applying-ssl-to-nginx/</id>
     <published>2018-01-13T12:18:04.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
@@ -188,18 +215,45 @@
     </summary>
     
     
-      <category term="Web Fundamental" scheme="http://blackpost.xyz/tags/Web-Fundamental/"/>
+      <category term="Web Fundamental" scheme="https://blackpost38.github.io/tags/Web-Fundamental/"/>
     
-      <category term="nginx" scheme="http://blackpost.xyz/tags/nginx/"/>
+      <category term="nginx" scheme="https://blackpost38.github.io/tags/nginx/"/>
     
-      <category term="SSL" scheme="http://blackpost.xyz/tags/SSL/"/>
+      <category term="SSL" scheme="https://blackpost38.github.io/tags/SSL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nightwatch로 E2E 테스트 자동화 경험담</title>
+    <link href="https://blackpost38.github.io/2018/01/13/experience-about-e2e-testing-with-nightwatch/"/>
+    <id>https://blackpost38.github.io/2018/01/13/experience-about-e2e-testing-with-nightwatch/</id>
+    <published>2018-01-13T12:18:04.000Z</published>
+    <updated>2019-03-23T07:48:16.494Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="왜-테스트-해야-하는가"><a href="#왜-테스트-해야-하는가" class="headerlink" title="왜 테스트 해야 하는가?"></a><a href="#왜-테스트-해야-하는가" title="왜 테스트 해야 하는가?"></a>왜 테스트 해야 하는가?</h2><ul><li><p>새로운 비지니스를 준비해야 함.</p><pre><code>*   그런데 인력이 충분치 않음.</code></pre></li><li><p>그럼 어떻게 해야 할까?</p><pre><code>*   새로운 인력을 추가하거나 기존 인력이 하는 일을 더는 방법 밖에 없음.</code></pre><ul><li>새로운 인력을 추가하는 일은 이미 채용 공고를 올려 진행 중.</li></ul></li><li><p>기존 인력이 하는 일을 어떻게 덜까?</p><pre><code>*   반복되는 업무는 자동화를 시켜버리자.</code></pre></li><li><p>반복되는 업무는 뭐가 있을까?</p><pre><code>*   고객사 납품 직전에 제품을 테스트 하는 일 (이밖에도 많겠지만)</code></pre><ul><li>그래! 제품 테스트를 자동화 해보자</li></ul></li><li><p>제품 테스트는 어떻게 했었나?</p><pre><code>*   제품 테스트는 고객 요구사항이나 새로운 기능 위주로 테스트.</code></pre></li><li><p>여기서 문제점은 무엇인가?</p><pre><code>*   기존에 되던 기능들이 안되면 정말 난감.</code></pre><ul><li>만약 안 될 경우 기능 고치고 테스트하고 납품하는 일을 다시 한 번 해야함.</li><li>그렇다고 기존 기능까지 매번 반복해서 테스트 하는 것은 괴로운 일.</li></ul></li><li>올~ 제품 테스트 자동화 의미가 있는 것 같음. 한 번 해보자.</li></ul><h2 id="어떤-것을-테스트-할-것인가"><a href="#어떤-것을-테스트-할-것인가" class="headerlink" title="어떤 것을 테스트 할 것인가?"></a><a href="#어떤-것을-테스트-할-것인가" title="어떤 것을 테스트 할 것인가?"></a>어떤 것을 테스트 할 것인가?</h2><ul><li><p>‘최소한 이것은 테스트해야 된다’ 정도로 중요한 기능(주관적인 것이라…)을 테스트 하자.</p><pre><code>*   논의를 거쳐서 테스트할 기능을 쭉 리스팅했다.</code></pre><ul><li>그리고 기능을 토대로 테스트 시나리오 작성.</li></ul></li></ul><h2 id="어떻게-구현할-것인가"><a href="#어떻게-구현할-것인가" class="headerlink" title="어떻게 구현할 것인가?"></a><a href="#어떻게-구현할-것인가" title="어떻게 구현할 것인가?"></a>어떻게 구현할 것인가?</h2><ul><li>이미 우리는 Nightwatch를 이용하여 간단한 시나리오를 작성하고 E2E 테스트를 돌리고 있는 상태.</li><li>여기에 시나리오를 추가해서 앞서 리스팅한 내용을 모두 테스트할 수 있게 만들자.</li><li><p>E2E 테스트 코드를 작성할 때에는 아래를 항상 생각해보자.</p><pre><code>*   E2E 테스트의 기본을 지킨다.        *   E2E 테스트는 내부 구현을 고려하지 않고 오로지 기능을 테스트 하는 것이다.*   E2E 테스트는 UAT(user-acceptence-testing)이다.                *   UAT는 유저가 제품을 사용하는데 문제가 없는지를 테스트 하는 것이다.    *   예를 들어, 오탈자나 세세한 오작동은 신경쓰지 않고, 시스템이 깨지거나, 에러가 나서 더이상 진행을 할 수 없는 지를 테스트 한다.                        *   참고: [end-to-end-testing-with-nightwatch-js-node-js-at-scale](https://blog.risingstack.com/end-to-end-testing-with-nightwatch-js-node-js-at-scale)</code></pre><ul><li>코드는 읽기 쉬워야 한다.</li><li><p>모든 시나리오는 독립적으로 실행될 수 있다.</p><pre><code>*   시나리오가 다른 시나리오에 종속되면, 테스트 해보고 싶은 시나리오 하나 돌리는 것이 귀찮은 일이 된다.</code></pre><ul><li><p>그런데 막상 해보니 테스트 하고자 하는 기능에 선행되어야 하는 조건이 많은 경우가 있었다.</p><pre><code>*   스텝7을 테스트 하기 위해선 스텝1 ~ 6이 먼저 선행되는 것처럼…</code></pre></li><li>결국은 테스트 시나리오를 실행하기 전에, 테스트할 기능이 필요한 내용들을 미리 다 만들어 두는 시나리오를 따로 작성했다.</li></ul></li><li><p>하나의 시나리오는 하나의 목적만 갖는다 =&gt; 복잡하게 만들지 않는다.</p><pre><code>*   중간에 다른 길로 세지 않으려고…</code></pre></li><li><p>시나리오에서 만들어진 데이터는 제거한다.</p><pre><code>*   필요 없으니까!</code></pre></li><li><p>테스트를 위해 로직을 바꾸진 않는다.</p><pre><code>*   코드 자체를 바꾸고 싶진 않았지만, selector를 편하게 가져가기 위해 id를 꽤많이 추가했다.</code></pre></li></ul></li></ul><h2 id="구현하면서-도움이-되었던-것"><a href="#구현하면서-도움이-되었던-것" class="headerlink" title="구현하면서 도움이 되었던 것"></a><a href="#구현하면서-도움이-되었던-것" title="구현하면서 도움이 되었던 것"></a>구현하면서 도움이 되었던 것</h2><ul><li><p>E2E 테스트 범위 설정</p><pre><code>*   사용자가 어플리케이션 이용 목적에 해당되는 내용만 테스트 한다.</code></pre><ul><li>세세한 테스트는 유닛 테스트가 가져가야 할 문제.</li><li><p>만약 세세한 테스트 까지 작성하려면, 테스트 돌리는 시간과 이를 작성하는 비용이 굉장히 많이 든다.</p><pre><code>*   유닛테스트와 결합하여 사용할 수 있긴 하다. [unit-testing](http://nightwatchjs.org/guide#unit-testing)</code></pre></li></ul></li><li><p>페이지 오브젝트 활용</p><pre><code>*   페이지 별로 테스트를 구성할 수 있음.</code></pre><ul><li>페이지 오브젝트에 커맨드를 정의 하면 여러 시나리오에서 가져다 사용하기 편함.</li><li><p>시나리오를 작성할 때 사용자 중심으로 코드를 작성하는데 도움이 됨.</p><pre><code>*   페이지 오브젝트의 모든 커맨드 네이밍을 사용자 중심으로 함.</code></pre><ul><li><p>그 안의 내용은 Nightwatch의 API 같은 프로그래밍 요소를 사용하여 테스트를 실행.</p><pre><code>*   예를 들어, `.uploadDataSource` 커맨드를 선언함.</code></pre><ul><li>실제하는 일은 type이 file인 input 엘리먼트의 data 속성을 변경하는 일.</li></ul></li><li>이렇게 구성하면 시나리오 내용만 보고도 Nightwatch가 어떤 식으로 작동될지 예상할 수 있음.</li></ul></li><li><p>또한, 페이지 오브젝트에서 엘리먼트 또는 섹션을 제공해주는데, 복잡한 Selector를 어떠한 엘리먼트인지 정의할 수 있어서 코드 읽기가 수월해짐.</p><pre><code>*   실제로 `.someClass &amp;gt; div &amp;gt; span` 이런 것만 봐서는 어떤 엘리먼트인지 알기 어려움</code></pre><ul><li>엘리먼트나 섹션을 이용해서 <code>infoText: &amp;#39;.someClass &amp;gt; div &amp;gt; span&amp;#39;</code> 같이 정의해주는 것이 훨씬 명확함.</li><li>각 페이지마다 공통 되는 요소들(ProgressBar, Tab 등)은 Common 페이지를 하나 선언해서 공통적으로 사용할 수 있게 만들어 놓음.</li></ul></li><li>참고: <a href="http://nightwatchjs.org/guide#page-objects" target="_blank" rel="noopener">page-objects</a></li></ul></li><li><p>스크린샷 활용</p><pre><code>*   프로덕트의 중요한 화면의 경우는 직접 눈으로 보고 싶음 =&amp;gt; 눈으로 봐서 이상이 없는지도 확인하고 싶음.</code></pre><ul><li>이때 스크린샷 기능을 활용하면 도움이 됨.</li><li><p>특정 페이지로 가서 스크린샷 기능을 이용하여 원하는 이름으로 이미지 파일을 생성할 수 있음.</p><pre><code>*   현재 gitlab.ci E2E 파이프라인에서 E2E 테스트가 모두 끝나면, Docker를 이용하여 스크린샷들을 웹화면에서 볼 수 있게 세팅했음.</code></pre><ul><li>Docker image (image-gallery) 사용.</li></ul></li><li><p>참고</p><pre><code>*   [스크린샷](http://nightwatchjs.org/api/saveScreenshot.html)</code></pre><ul><li><a href="https://github.com/docwhat/docker-image-gallery" target="_blank" rel="noopener">Docker Image Gallery</a></li></ul></li></ul></li><li><p>Docker selenium에서 데이터 업로드 테스트</p><pre><code>*   여기서 삽질 꽤 많이 함.</code></pre><ul><li>Docker selenium을 이용하면 이상하게 파일 업로드가 되질 않았음.</li><li>해결법은 단순했음, volume을 이용하여 파일을 공유하면 되었음.</li><li><a href="https://github.com/nightwatchjs/nightwatch/issues/1064" target="_blank" rel="noopener">참고</a></li></ul></li><li><p>Gitlab Scheduled Pipeline</p><pre><code>*   E2E 테스트 파이프라인을 만들고, 매번 M.R 후에 돌리게 하니 시간을 상당히 잡아먹음. (45분 정도.)</code></pre><ul><li><p>이게 뭐가 문제가 되는데?</p><pre><code>*   (작업 성격 상) M.R이 수시로 일어남. =&amp;gt; 수시로 E2E 테스트가 실행 =&amp;gt; 45분 테스크가 수시로 실행</code></pre></li><li><p>그래서 E2E 테스트 파이프라인을 스케쥴링 해서 매일 새벽4시에 돌리게 만들어 놓음. (그냥 새벽에 돌려놓게 만듦)</p><pre><code>*   우리 솔루션은 수정되는 내용이 바로바로 고객사에 배포되는 것도 아님 =&amp;gt; 버그에 민감하게 반응하지 않아도 된다(?)</code></pre></li></ul></li></ul><h2 id="구현하고-나서-무엇이-달라졌는가"><a href="#구현하고-나서-무엇이-달라졌는가" class="headerlink" title="구현하고 나서 무엇이 달라졌는가?"></a><a href="#구현하고-나서-무엇이-달라졌는가" title="구현하고 나서 무엇이 달라졌는가?"></a>구현하고 나서 무엇이 달라졌는가?</h2><ul><li>피부로 와닿는 장점은 적어도 메인 기능을 이용하는데 어플리케이션이 깨지거나 버그가 생기는지 매일 확인할 수 있는 점.</li><li>그것도 사람이 아닌 소프트웨어가 자동으로…!</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;왜-테스트-해야-하는가&quot;&gt;&lt;a href=&quot;#왜-테스트-해야-하는가&quot; class=&quot;headerlink&quot; title=&quot;왜 테스트 해야 하는가?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#왜-테스트-해야-하는가&quot; title=&quot;왜 테스트 해야 하는가?&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+    
+      <category term="MERN" scheme="https://blackpost38.github.io/tags/MERN/"/>
+    
+      <category term="nightwatch.js" scheme="https://blackpost38.github.io/tags/nightwatch-js/"/>
+    
+      <category term="node.js" scheme="https://blackpost38.github.io/tags/node-js/"/>
     
   </entry>
   
   <entry>
     <title>Improving readability of your React component</title>
-    <link href="http://blackpost.xyz/2018/01/13/improving%20readability-of-your-react-component/"/>
-    <id>http://blackpost.xyz/2018/01/13/improving readability-of-your-react-component/</id>
+    <link href="https://blackpost38.github.io/2018/01/13/improving%20readability-of-your-react-component/"/>
+    <id>https://blackpost38.github.io/2018/01/13/improving readability-of-your-react-component/</id>
     <published>2018-01-13T12:18:04.000Z</published>
     <updated>2019-03-23T07:48:16.494Z</updated>
     
@@ -217,37 +271,9 @@
     </summary>
     
     
-      <category term="MERN" scheme="http://blackpost.xyz/tags/MERN/"/>
+      <category term="MERN" scheme="https://blackpost38.github.io/tags/MERN/"/>
     
-      <category term="react" scheme="http://blackpost.xyz/tags/react/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>데이터를 Redux store 대신 React state에 저장해도 될까요?</title>
-    <link href="http://blackpost.xyz/2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/"/>
-    <id>http://blackpost.xyz/2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/</id>
-    <published>2018-01-13T12:18:04.000Z</published>
-    <updated>2019-03-23T07:48:16.494Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>아래 있는 이전 글을 <a href="https://www.facebook.com/groups/1413798668880301?id=1850080511918779" target="_blank" rel="noopener">react korea</a>에 공유하고 만족할 만한 피드백을 받았다.<br>여기에 피드백을 받고 생각이 바뀐 부분이 있어서 다시 정리하고자 한다. -원본은 멘 아래에 있다.-</p></blockquote><h2 id="모든-데이터를-Redux-store에-관리하려는-이유"><a href="#모든-데이터를-Redux-store에-관리하려는-이유" class="headerlink" title="모든 데이터를 Redux store에 관리하려는 이유"></a><a href="#모든-데이터를-Redux-store에-관리하려는-이유" title="모든 데이터를 Redux store에 관리하려는 이유"></a>모든 데이터를 Redux store에 관리하려는 이유</h2><p>처음 data를 Redux store에 관리할지 React state에 관리할지에 대한 내 생각은 아래와 같았다.</p><blockquote><p><em>데이터를 Redux store에 관리하는 것이 기본이다.</em><br><em>단, 어플리케이션 전반적으로 영향을 끼치지 않는 데이터는 React state로 두어도 괜찮다</em></p></blockquote><p>이유는 사용자 행동을 action으로 하나하나 정의하고 로깅으로 남겨두면, <strong>사용자 행동을 추적할 수 있어 디버깅이 편할 것 같았다.</strong></p><p>그래서 사용자의 action에 영향을 받는 모든 데이터를 Redux store로 관리하는 것이 기본이라고 생각했다.</p><h2 id="모든-데이터를-Redux-store에-관리하면-생기는-위험"><a href="#모든-데이터를-Redux-store에-관리하면-생기는-위험" class="headerlink" title="모든 데이터를 Redux store에 관리하면 생기는 위험"></a><a href="#모든-데이터를-Redux-store에-관리하면-생기는-위험" title="모든 데이터를 Redux store에 관리하면 생기는 위험"></a>모든 데이터를 Redux store에 관리하면 생기는 위험</h2><p>그런데 이러한 방식이 <strong>오히려 데이터 변경 이력을 지저분하게 만들 수 있다</strong>는 피드백을 받았다.</p><p>데이터 변경 이력에 대한 피드백을 곰곰이 생각해보니, 고객사에 가서 log를 뒤지던 나의 모습이 떠올랐다.</p><p>유의미한 log를 찾기 위해 무의미한 log를 수없이 필터링한 것이 기억이 났다.</p><p>이와 비슷하게 너무 많은 action이 정말로 중요한 action을 가릴 것 같은 생각이 들었다.</p><p>또한, <strong>퍼포먼스에 문제가 생길 수 있다</strong>는 의견도 받았다.</p><p>예를 들어, 폼을 입력하는 것까지 Redux로 관리하면 부하가 상당할 수도 있다는 내용이었다.</p><p>퍼포먼스와 관련된 내용은 <a href="http://redux.js.org/docs/faq/Performance.html#wont-calling-all-my-reducers-for-each-action-be-slow" target="_blank" rel="noopener">Redux 문서</a>에서 아래와 같이 안내하고 있어 별로 걱정하지 않았다.</p><ol><li>JavaScript engine의 충분히 좋은 성능</li><li>action이 dispatch 될 때 대부분 reducer는 default를 실행하므로 실질적으로 실행되는 코드는 적다는 것이었다.</li><li>만약 문제가 되면 패키지(redux-ignore)를 사용해서 특정 action에 특정 reducer만 작동하게끔 만들 수도 있다는 내용이었다.</li></ol><p>결국 문제가 되면 패키지를 이용해서 reducer를 커스터마이징 하라는 건데, 생각보다 많은 사람이 그 문제를 겪고 있는 것 같다.</p><p>그래서 action, reducer를 하나하나 정의해서 퍼포먼스 문제를 일으킬 가능성을 높히고, 커스터마이징 하는 수고까지 하기엔 비용이 굉장히 크다고 판단했다.</p><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a><a href="#결론" title="결론"></a>결론</h2><p>따라서 다시 정리한 내 생각은 아래와 같다.</p><p><em>되도록이면 지역적으로 사용하는 데이터는 React state로 관리하자.</em></p><p>생각 살짝 바꾸는게 이리 힘들 줄이야</p><blockquote><p><a href="http://redux.js.org/docs/faq/OrganizingState.html#do-i-have-to-put-all-my-state-into-redux-should-i-ever-use-reacts-setstate" target="_blank" rel="noopener">Q&amp;A</a>에 이와 같은 주제를 다룬 내용이 있다.</p></blockquote><hr><blockquote><p>여기서 부터 원본이다.</p></blockquote><p>Redux store에 데이터를 추가하는 일은 단순하면서도 귀찮은 작업이다.</p><p>Action, Reducer 그리고 Action을 dispatch 하는 곳 모두 수정해야 하기 때문이다.</p><p>때문에 번거로운 작업에서 벗어나기 위해 React state의 유혹을 받는다.</p><p>하지만 규모가 큰 React state를 관리하기 위해 Redux store를 사용하지 않던가…!</p><p><em>나는 Redux store 중에서 React state로 보관해도 문제가 없는 데이터에 대해 생각했다.</em></p><p><em>그리고 고민 끝에 지역적으로 사용하는 데이터는 React state로 사용해도 되겠다는 판단을 내렸다.</em></p><blockquote><p>중요한 것은 local state는 React state로 관리해야 한다가 아닌, 관리해도 된다는 것이다.</p></blockquote><p>여기서 지역적으로 사용한다는 것은 하나 또는 일부 컴포넌트 내에서만 사용하는 데이터이다.</p><p>비유하자면 데이터를 변수라고 가정하면, 지역 변수는 React state가 될 것이며, 전역 변수는 Redux Store가 될 것이다.</p><p>이 데이터의 특징은 Redux store로 굳이 관리하지 않아도, 어플리케이션 전반에 걸쳐 사용 되지 않고 일부에만 사용된다.</p><p>예를 들어, checkbox의 checked 데이터나 modal의 show/off 데이터는 해당 컴포넌트에만 사용된다.</p><p>따라서 이러한 데이터들은 React state로 관리해도 무방하다.</p><p>validation check가 필요한 input 컴포넌트의 데이터도 전반적으로 사용되는 것은 아니므로 React state로 관리해도 된다.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;아래 있는 이전 글을 &lt;a href=&quot;https://www.facebook.com/groups/1413798668880301?id=1850080511918779&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;re
-      
-    
-    </summary>
-    
-    
-      <category term="MERN" scheme="http://blackpost.xyz/tags/MERN/"/>
-    
-      <category term="react" scheme="http://blackpost.xyz/tags/react/"/>
-    
-      <category term="redux" scheme="http://blackpost.xyz/tags/redux/"/>
+      <category term="react" scheme="https://blackpost38.github.io/tags/react/"/>
     
   </entry>
   

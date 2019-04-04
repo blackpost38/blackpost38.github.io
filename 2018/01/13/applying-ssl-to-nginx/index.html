@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Nginx에 SSL 적용하기 · Dev Blog</title><meta name="description" content="Nginx에 SSL 적용하기 - Hyunju Choi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://blackpost38.github.io/atom.xml" title="Dev Blog"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">Dev Blog</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><ul class="shortcut-icons"><a href="https://github.com/blackpost38" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Nginx에 SSL 적용하기</h1><div class="post-info">Jan 13, 2018</div><div class="post-content"><h2 id="Let’s-Encrypt"><a href="#Let’s-Encrypt" class="headerlink" title="Let’s Encrypt"></a><a href="#Let’s-Encrypt" title="Let’s Encrypt"></a>Let’s Encrypt</h2><ul>
+<li>Let’s Encrypt는 무료로 TLS/SSL 증명서를 제공해주고 설치해주는 인증기관(Certificate Authority)이다.</li>
+<li>letsencrypt는 무료 TSL/SSL 증명서를 발급하기 위한 절차(process)를 간단하게 해주는 도구이다.</li>
+<li>여기서 letsencrypt를 이용하여 SSL 증명서를 발급받고 자동으로 갱신하는 방법을 살펴보자.</li>
+</ul>
+<h2 id="시작하기-전"><a href="#시작하기-전" class="headerlink" title="시작하기 전"></a><a href="#시작하기-전" title="시작하기 전"></a>시작하기 전</h2><ul>
+<li>도메인이 매핑되어 있는 nginx가 설치되어 있는 ubuntu</li>
+<li>증명서를 발급할 때 도메인 이름으로 유효성 검증을 거친다.</li>
+<li>서브 도메인에 매핑하고 싶으면 A record에 등록된 서브 도메인 이어야 한다.</li>
+</ul>
+<h2 id="letsencrypt-client-설치하기"><a href="#letsencrypt-client-설치하기" class="headerlink" title="letsencrypt client 설치하기"></a><a href="#letsencrypt-client-설치하기" title="letsencrypt client 설치하기"></a>letsencrypt client 설치하기</h2><ul>
+<li>apt 패키지를 업데이트 하고 letsencrypt를 설치해보자.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update</span><br><span class="line">&gt; sudo apt-get install letsencrypt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="SSL-증명서-얻기"><a href="#SSL-증명서-얻기" class="headerlink" title="SSL 증명서 얻기"></a><a href="#SSL-증명서-얻기" title="SSL 증명서 얻기"></a>SSL 증명서 얻기</h2><ul>
+<li><p>플러그인 사용하기</p>
+<pre><code>*   letsencrypt는 다양한 플러그인을 이용하여 SSL 인증서를 얻을 수 있다.
+</code></pre><ul>
+<li>이 플러그인들은 서버에 인증서를 발급할지 여부만 따지므로 인증자(authenticators)라고도 한다.</li>
+<li>여기서는 Webroot를 이용한다.</li>
+<li>Webroot는 ./well-known 폴더에 특수한 파일을 놓고 작동한다.</li>
+<li>따라서 nginx 설정을 변경하여 ./well-known 경로에 접근할 수 있도록 해준다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location ~ /.well-known &#123;</span><br><span class="line">    allow all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>nginx 설정을 변경하였으니 설정이 맞게 되었는지 확인하고 설정을 적용하기 위해 nginx를 재시작을 해준다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; nginx -t</span><br><span class="line">&gt; systemctl restart nginx</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>letsencrypt 명령어를 이용하여 인증서를 만들어 주자.</p>
+<pre><code>*   `&amp;gt; letsencrypt -a webroot --webroot-path=/var/www/html -d blackpost.xyz`
+</code></pre><ul>
+<li>-a: 우리가 사용할 plugin 이름</li>
+<li>–webroot-path: /.well-known의 경로</li>
+<li>-d: 도메인 이름</li>
+<li><p>중간에 prompt가 나타나서 이메일과 동의 여부를 묻는다.</p>
+<pre><code>*   이메일은 key 분실 시 필요한 정보이다.
+</code></pre><ul>
+<li><p>letsencrypt로 4개의 .pem 파일이 만들어 진다.</p>
+<pre><code>*   cert.pem: 도메인 인증서
+</code></pre><ul>
+<li>chain.pem: letsencrypt 연결 인증서</li>
+<li>fullchain.pem: cert.pem과 chain.pem이 결합된 인증서</li>
+<li>privkey.pem: 인증서의 private key</li>
+<li>/etc/letsencrypt/live/domain_name 경로에 링크가 되어 만들어 진다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>보안 수준을 올리기 위해 strong diffie-hellman 그룹을 만들어 준다.</p>
+<pre><code>*   `openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048`
+</code></pre><ul>
+<li>/etc/ssl/certs/dhparam.pem 경로에 strong DH 그룹이 만들어진다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="nginx에-TSL-SSL-설정하기"><a href="#nginx에-TSL-SSL-설정하기" class="headerlink" title="nginx에 TSL/SSL 설정하기"></a><a href="#nginx에-TSL-SSL-설정하기" title="nginx에 TSL/SSL 설정하기"></a>nginx에 TSL/SSL 설정하기</h2><ul>
+<li><p>SSL 키와 인증서를 가르키는 설정 파일 만들기</p>
+<pre><code>*   `nano /etc/nginx/snippets/ssl-blackpost.xyz.conf`
+</code></pre><ul>
+<li>snippets 폴더에 conf 파일을 아래와 같은 내용으로 생성해준다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;</span><br><span class="line">ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Strong encryption 세팅하기</p>
+<pre><code>*   `nano /etc/nginx/snippets/ssl-params.conf`
+</code></pre><ul>
+<li><p>ssl_dhparam 세팅 추가</p>
+<pre><code>*   앞서 만들어준 strong diffie-hellman 그룹 경로 추가
+</code></pre></li>
+<li><p>HTTP Strict Transport Security에 preload 기능 제거</p>
+<pre><code>*   실수나 잘못 설정되어 있는 경우 광범위한 결과(?)를 초래할 수 있다.&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+</code></pre><p><span class="line">2</span><br><td class="code"><pre><span class="line">add_header Strict-Transport-Security &quot;max-age=63072000; includeSubdomains&quot;;</span><br><span class="line">ssl_dhparam /etc/ssl/certs/dhparam.pem;</span><br></pre></td></p>
+</li>
+</ul>
+</li>
+<li><p>Nginx config 수정</p>
+<pre><code>*   nginx config 파일을 연다.
+
+        *   `nano /etc/nginx/sites-available/default`
+</code></pre><ul>
+<li>default에서 http request를 https request로 redirect를 시키기 위한 설정을 추가한다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server;</span><br><span class="line">    server_name example.com <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a>;</span><br><span class="line">    return 301 https://$server_name$request_uri;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>바로 아래 https redirect 될 경우 적용할 server block을 만들어 준다.</p>
+<pre><code>*   443 port를 사용하며 ssl 인증서를 사용하며, http2도 지원해준다.&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+</code></pre><p><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    # SSL configuration</span><br><span class="line">    listen 443 ssl http2 default_server;</span><br><span class="line">    listen [::]:443 ssl http2 default_server;</span><br><span class="line">    include snippets/ssl-example.com.conf;</span><br><span class="line">    include snippets/ssl-params.conf;</span><br><span class="line">. . .</span><br></pre></td></p>
+</li>
+<li><p>수정한 설정을 적용하기 위해 nginx 설정을 확인하고 재시작한다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; nginx -t</span><br><span class="line">&gt; systemctl restart nginx</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=example.com" target="_blank" rel="noopener">https://www.ssllabs.com/ssltest/analyze.html?d=example.com</a> 로 접속하여 적용한 SSL 레포트를 확인해 볼 수 있으며 A+가 나와야 한다.</p>
+</li>
+</ul>
+<h2 id="인증서-자동-갱신"><a href="#인증서-자동-갱신" class="headerlink" title="인증서 자동 갱신"></a><a href="#인증서-자동-갱신" title="인증서 자동 갱신"></a>인증서 자동 갱신</h2><ul>
+<li>인증서를 만들면 90 동안 유효기간이나 여유 있게 60일 정도 되면 갱신하는 게 좋다.</li>
+<li>letsencrypt는 renew 커맨드를 제공해주며 인증서를 갱신해 준다.</li>
+<li>만약 만기일이 30일 이하면 인증서를 갱신하나 그렇지 않으면, 만기일만 확인하고 끝난다.</li>
+<li><p>실질적인 갱신 방법은 crontab에 갱신 작업을 등록하는 것이다.</p>
+<pre><code>*   월요일에 한 번씩 갱신하도록 crontab에 작업을 추가하자.&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+</code></pre><p><span class="line">2</span><br><span class="line">3</span><br><td class="code"><pre><span class="line">&gt; crontab -e</span><br><span class="line">30 2 <em> </em> 1 /usr/bin/letsencrypt renew &gt;&gt; /var/log/le-renew.log</span><br><span class="line">35 2 <em> </em> 1 /bin/systemctl reload nginx</span><br></pre></td></p>
+</li>
+</ul>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a><a href="#참고" title="참고"></a>참고</h2><ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04</a></li>
+<li>port 80으로 설정되어야 letsencrypt certonly command가 에러 없이 실행된다.</li>
+</ul>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = 'blackpost38';
+var disqus_identifier = '2018/01/13/applying-ssl-to-nginx/';
+var disqus_title = 'Nginx에 SSL 적용하기';
+var disqus_url = 'https://blackpost38.github.io/2018/01/13/applying-ssl-to-nginx/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//blackpost38.disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/" class="prev">PREV</a><a href="/2018/01/13/experience-about-e2e-testing-with-nightwatch/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 - 2019 <a href="https://blackpost38.github.io">Hyunju Choi</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"blackpost38",'auto');ga('send','pageview');</script></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Nightwatch로 E2E 테스트 자동화 경험담 · Dev Blog</title><meta name="description" content="Nightwatch로 E2E 테스트 자동화 경험담 - Hyunju Choi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://blackpost38.github.io/atom.xml" title="Dev Blog"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">Dev Blog</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><ul class="shortcut-icons"><a href="https://github.com/blackpost38" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Nightwatch로 E2E 테스트 자동화 경험담</h1><div class="post-info">Jan 13, 2018</div><div class="post-content"><h2 id="왜-테스트-해야-하는가"><a href="#왜-테스트-해야-하는가" class="headerlink" title="왜 테스트 해야 하는가?"></a><a href="#왜-테스트-해야-하는가" title="왜 테스트 해야 하는가?"></a>왜 테스트 해야 하는가?</h2><ul>
+<li><p>새로운 비지니스를 준비해야 함.</p>
+<pre><code>*   그런데 인력이 충분치 않음.
+</code></pre></li>
+<li><p>그럼 어떻게 해야 할까?</p>
+<pre><code>*   새로운 인력을 추가하거나 기존 인력이 하는 일을 더는 방법 밖에 없음.
+</code></pre><ul>
+<li>새로운 인력을 추가하는 일은 이미 채용 공고를 올려 진행 중.</li>
+</ul>
+</li>
+<li><p>기존 인력이 하는 일을 어떻게 덜까?</p>
+<pre><code>*   반복되는 업무는 자동화를 시켜버리자.
+</code></pre></li>
+<li><p>반복되는 업무는 뭐가 있을까?</p>
+<pre><code>*   고객사 납품 직전에 제품을 테스트 하는 일 (이밖에도 많겠지만)
+</code></pre><ul>
+<li>그래! 제품 테스트를 자동화 해보자</li>
+</ul>
+</li>
+<li><p>제품 테스트는 어떻게 했었나?</p>
+<pre><code>*   제품 테스트는 고객 요구사항이나 새로운 기능 위주로 테스트.
+</code></pre></li>
+<li><p>여기서 문제점은 무엇인가?</p>
+<pre><code>*   기존에 되던 기능들이 안되면 정말 난감.
+</code></pre><ul>
+<li>만약 안 될 경우 기능 고치고 테스트하고 납품하는 일을 다시 한 번 해야함.</li>
+<li>그렇다고 기존 기능까지 매번 반복해서 테스트 하는 것은 괴로운 일.</li>
+</ul>
+</li>
+<li>올~ 제품 테스트 자동화 의미가 있는 것 같음. 한 번 해보자.</li>
+</ul>
+<h2 id="어떤-것을-테스트-할-것인가"><a href="#어떤-것을-테스트-할-것인가" class="headerlink" title="어떤 것을 테스트 할 것인가?"></a><a href="#어떤-것을-테스트-할-것인가" title="어떤 것을 테스트 할 것인가?"></a>어떤 것을 테스트 할 것인가?</h2><ul>
+<li><p>‘최소한 이것은 테스트해야 된다’ 정도로 중요한 기능(주관적인 것이라…)을 테스트 하자.</p>
+<pre><code>*   논의를 거쳐서 테스트할 기능을 쭉 리스팅했다.
+</code></pre><ul>
+<li>그리고 기능을 토대로 테스트 시나리오 작성.</li>
+</ul>
+</li>
+</ul>
+<h2 id="어떻게-구현할-것인가"><a href="#어떻게-구현할-것인가" class="headerlink" title="어떻게 구현할 것인가?"></a><a href="#어떻게-구현할-것인가" title="어떻게 구현할 것인가?"></a>어떻게 구현할 것인가?</h2><ul>
+<li>이미 우리는 Nightwatch를 이용하여 간단한 시나리오를 작성하고 E2E 테스트를 돌리고 있는 상태.</li>
+<li>여기에 시나리오를 추가해서 앞서 리스팅한 내용을 모두 테스트할 수 있게 만들자.</li>
+<li><p>E2E 테스트 코드를 작성할 때에는 아래를 항상 생각해보자.</p>
+<pre><code>*   E2E 테스트의 기본을 지킨다.
+
+        *   E2E 테스트는 내부 구현을 고려하지 않고 오로지 기능을 테스트 하는 것이다.
+*   E2E 테스트는 UAT(user-acceptence-testing)이다.
+
+                *   UAT는 유저가 제품을 사용하는데 문제가 없는지를 테스트 하는 것이다.
+    *   예를 들어, 오탈자나 세세한 오작동은 신경쓰지 않고, 시스템이 깨지거나, 에러가 나서 더이상 진행을 할 수 없는 지를 테스트 한다.
+
+                        *   참고: [end-to-end-testing-with-nightwatch-js-node-js-at-scale](https://blog.risingstack.com/end-to-end-testing-with-nightwatch-js-node-js-at-scale)
+</code></pre><ul>
+<li>코드는 읽기 쉬워야 한다.</li>
+<li><p>모든 시나리오는 독립적으로 실행될 수 있다.</p>
+<pre><code>*   시나리오가 다른 시나리오에 종속되면, 테스트 해보고 싶은 시나리오 하나 돌리는 것이 귀찮은 일이 된다.
+</code></pre><ul>
+<li><p>그런데 막상 해보니 테스트 하고자 하는 기능에 선행되어야 하는 조건이 많은 경우가 있었다.</p>
+<pre><code>*   스텝7을 테스트 하기 위해선 스텝1 ~ 6이 먼저 선행되는 것처럼…
+</code></pre></li>
+<li>결국은 테스트 시나리오를 실행하기 전에, 테스트할 기능이 필요한 내용들을 미리 다 만들어 두는 시나리오를 따로 작성했다.</li>
+</ul>
+</li>
+<li><p>하나의 시나리오는 하나의 목적만 갖는다 =&gt; 복잡하게 만들지 않는다.</p>
+<pre><code>*   중간에 다른 길로 세지 않으려고…
+</code></pre></li>
+<li><p>시나리오에서 만들어진 데이터는 제거한다.</p>
+<pre><code>*   필요 없으니까!
+</code></pre></li>
+<li><p>테스트를 위해 로직을 바꾸진 않는다.</p>
+<pre><code>*   코드 자체를 바꾸고 싶진 않았지만, selector를 편하게 가져가기 위해 id를 꽤많이 추가했다.
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="구현하면서-도움이-되었던-것"><a href="#구현하면서-도움이-되었던-것" class="headerlink" title="구현하면서 도움이 되었던 것"></a><a href="#구현하면서-도움이-되었던-것" title="구현하면서 도움이 되었던 것"></a>구현하면서 도움이 되었던 것</h2><ul>
+<li><p>E2E 테스트 범위 설정</p>
+<pre><code>*   사용자가 어플리케이션 이용 목적에 해당되는 내용만 테스트 한다.
+</code></pre><ul>
+<li>세세한 테스트는 유닛 테스트가 가져가야 할 문제.</li>
+<li><p>만약 세세한 테스트 까지 작성하려면, 테스트 돌리는 시간과 이를 작성하는 비용이 굉장히 많이 든다.</p>
+<pre><code>*   유닛테스트와 결합하여 사용할 수 있긴 하다. [unit-testing](http://nightwatchjs.org/guide#unit-testing)
+</code></pre></li>
+</ul>
+</li>
+<li><p>페이지 오브젝트 활용</p>
+<pre><code>*   페이지 별로 테스트를 구성할 수 있음.
+</code></pre><ul>
+<li>페이지 오브젝트에 커맨드를 정의 하면 여러 시나리오에서 가져다 사용하기 편함.</li>
+<li><p>시나리오를 작성할 때 사용자 중심으로 코드를 작성하는데 도움이 됨.</p>
+<pre><code>*   페이지 오브젝트의 모든 커맨드 네이밍을 사용자 중심으로 함.
+</code></pre><ul>
+<li><p>그 안의 내용은 Nightwatch의 API 같은 프로그래밍 요소를 사용하여 테스트를 실행.</p>
+<pre><code>*   예를 들어, `.uploadDataSource` 커맨드를 선언함.
+</code></pre><ul>
+<li>실제하는 일은 type이 file인 input 엘리먼트의 data 속성을 변경하는 일.</li>
+</ul>
+</li>
+<li>이렇게 구성하면 시나리오 내용만 보고도 Nightwatch가 어떤 식으로 작동될지 예상할 수 있음.</li>
+</ul>
+</li>
+<li><p>또한, 페이지 오브젝트에서 엘리먼트 또는 섹션을 제공해주는데, 복잡한 Selector를 어떠한 엘리먼트인지 정의할 수 있어서 코드 읽기가 수월해짐.</p>
+<pre><code>*   실제로 `.someClass &amp;gt; div &amp;gt; span` 이런 것만 봐서는 어떤 엘리먼트인지 알기 어려움
+</code></pre><ul>
+<li>엘리먼트나 섹션을 이용해서 <code>infoText: &amp;#39;.someClass &amp;gt; div &amp;gt; span&amp;#39;</code> 같이 정의해주는 것이 훨씬 명확함.</li>
+<li>각 페이지마다 공통 되는 요소들(ProgressBar, Tab 등)은 Common 페이지를 하나 선언해서 공통적으로 사용할 수 있게 만들어 놓음.</li>
+</ul>
+</li>
+<li>참고: <a href="http://nightwatchjs.org/guide#page-objects" target="_blank" rel="noopener">page-objects</a></li>
+</ul>
+</li>
+<li><p>스크린샷 활용</p>
+<pre><code>*   프로덕트의 중요한 화면의 경우는 직접 눈으로 보고 싶음 =&amp;gt; 눈으로 봐서 이상이 없는지도 확인하고 싶음.
+</code></pre><ul>
+<li>이때 스크린샷 기능을 활용하면 도움이 됨.</li>
+<li><p>특정 페이지로 가서 스크린샷 기능을 이용하여 원하는 이름으로 이미지 파일을 생성할 수 있음.</p>
+<pre><code>*   현재 gitlab.ci E2E 파이프라인에서 E2E 테스트가 모두 끝나면, Docker를 이용하여 스크린샷들을 웹화면에서 볼 수 있게 세팅했음.
+</code></pre><ul>
+<li>Docker image (image-gallery) 사용.</li>
+</ul>
+</li>
+<li><p>참고</p>
+<pre><code>*   [스크린샷](http://nightwatchjs.org/api/saveScreenshot.html)
+</code></pre><ul>
+<li><a href="https://github.com/docwhat/docker-image-gallery" target="_blank" rel="noopener">Docker Image Gallery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Docker selenium에서 데이터 업로드 테스트</p>
+<pre><code>*   여기서 삽질 꽤 많이 함.
+</code></pre><ul>
+<li>Docker selenium을 이용하면 이상하게 파일 업로드가 되질 않았음.</li>
+<li>해결법은 단순했음, volume을 이용하여 파일을 공유하면 되었음.</li>
+<li><a href="https://github.com/nightwatchjs/nightwatch/issues/1064" target="_blank" rel="noopener">참고</a></li>
+</ul>
+</li>
+<li><p>Gitlab Scheduled Pipeline</p>
+<pre><code>*   E2E 테스트 파이프라인을 만들고, 매번 M.R 후에 돌리게 하니 시간을 상당히 잡아먹음. (45분 정도.)
+</code></pre><ul>
+<li><p>이게 뭐가 문제가 되는데?</p>
+<pre><code>*   (작업 성격 상) M.R이 수시로 일어남. =&amp;gt; 수시로 E2E 테스트가 실행 =&amp;gt; 45분 테스크가 수시로 실행
+</code></pre></li>
+<li><p>그래서 E2E 테스트 파이프라인을 스케쥴링 해서 매일 새벽4시에 돌리게 만들어 놓음. (그냥 새벽에 돌려놓게 만듦)</p>
+<pre><code>*   우리 솔루션은 수정되는 내용이 바로바로 고객사에 배포되는 것도 아님 =&amp;gt; 버그에 민감하게 반응하지 않아도 된다(?)
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="구현하고-나서-무엇이-달라졌는가"><a href="#구현하고-나서-무엇이-달라졌는가" class="headerlink" title="구현하고 나서 무엇이 달라졌는가?"></a><a href="#구현하고-나서-무엇이-달라졌는가" title="구현하고 나서 무엇이 달라졌는가?"></a>구현하고 나서 무엇이 달라졌는가?</h2><ul>
+<li>피부로 와닿는 장점은 적어도 메인 기능을 이용하는데 어플리케이션이 깨지거나 버그가 생기는지 매일 확인할 수 있는 점.</li>
+<li>그것도 사람이 아닌 소프트웨어가 자동으로…!</li>
+</ul>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = 'blackpost38';
+var disqus_identifier = '2018/01/13/experience-about-e2e-testing-with-nightwatch/';
+var disqus_title = 'Nightwatch로 E2E 테스트 자동화 경험담';
+var disqus_url = 'https://blackpost38.github.io/2018/01/13/experience-about-e2e-testing-with-nightwatch/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//blackpost38.disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/01/13/applying-ssl-to-nginx/" class="prev">PREV</a><a href="/2018/01/13/improving readability-of-your-react-component/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 - 2019 <a href="https://blackpost38.github.io">Hyunju Choi</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"blackpost38",'auto');ga('send','pageview');</script></body></html>

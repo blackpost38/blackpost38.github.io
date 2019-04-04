@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 데이터를 Redux store 대신 React state에 저장해도 될까요? · Dev Blog</title><meta name="description" content="데이터를 Redux store 대신 React state에 저장해도 될까요? - Hyunju Choi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://blackpost38.github.io/atom.xml" title="Dev Blog"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">Dev Blog</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><ul class="shortcut-icons"><a href="https://github.com/blackpost38" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">데이터를 Redux store 대신 React state에 저장해도 될까요?</h1><div class="post-info">Jan 13, 2018</div><div class="post-content"><blockquote>
+<p>아래 있는 이전 글을 <a href="https://www.facebook.com/groups/1413798668880301?id=1850080511918779" target="_blank" rel="noopener">react korea</a>에 공유하고 만족할 만한 피드백을 받았다.<br>여기에 피드백을 받고 생각이 바뀐 부분이 있어서 다시 정리하고자 한다. -원본은 멘 아래에 있다.-</p>
+</blockquote>
+<h2 id="모든-데이터를-Redux-store에-관리하려는-이유"><a href="#모든-데이터를-Redux-store에-관리하려는-이유" class="headerlink" title="모든 데이터를 Redux store에 관리하려는 이유"></a><a href="#모든-데이터를-Redux-store에-관리하려는-이유" title="모든 데이터를 Redux store에 관리하려는 이유"></a>모든 데이터를 Redux store에 관리하려는 이유</h2><p>처음 data를 Redux store에 관리할지 React state에 관리할지에 대한 내 생각은 아래와 같았다.</p>
+<blockquote>
+<p><em>데이터를 Redux store에 관리하는 것이 기본이다.</em><br><em>단, 어플리케이션 전반적으로 영향을 끼치지 않는 데이터는 React state로 두어도 괜찮다</em></p>
+</blockquote>
+<p>이유는 사용자 행동을 action으로 하나하나 정의하고 로깅으로 남겨두면, <strong>사용자 행동을 추적할 수 있어 디버깅이 편할 것 같았다.</strong></p>
+<p>그래서 사용자의 action에 영향을 받는 모든 데이터를 Redux store로 관리하는 것이 기본이라고 생각했다.</p>
+<h2 id="모든-데이터를-Redux-store에-관리하면-생기는-위험"><a href="#모든-데이터를-Redux-store에-관리하면-생기는-위험" class="headerlink" title="모든 데이터를 Redux store에 관리하면 생기는 위험"></a><a href="#모든-데이터를-Redux-store에-관리하면-생기는-위험" title="모든 데이터를 Redux store에 관리하면 생기는 위험"></a>모든 데이터를 Redux store에 관리하면 생기는 위험</h2><p>그런데 이러한 방식이 <strong>오히려 데이터 변경 이력을 지저분하게 만들 수 있다</strong>는 피드백을 받았다.</p>
+<p>데이터 변경 이력에 대한 피드백을 곰곰이 생각해보니, 고객사에 가서 log를 뒤지던 나의 모습이 떠올랐다.</p>
+<p>유의미한 log를 찾기 위해 무의미한 log를 수없이 필터링한 것이 기억이 났다.</p>
+<p>이와 비슷하게 너무 많은 action이 정말로 중요한 action을 가릴 것 같은 생각이 들었다.</p>
+<p>또한, <strong>퍼포먼스에 문제가 생길 수 있다</strong>는 의견도 받았다.</p>
+<p>예를 들어, 폼을 입력하는 것까지 Redux로 관리하면 부하가 상당할 수도 있다는 내용이었다.</p>
+<p>퍼포먼스와 관련된 내용은 <a href="http://redux.js.org/docs/faq/Performance.html#wont-calling-all-my-reducers-for-each-action-be-slow" target="_blank" rel="noopener">Redux 문서</a>에서 아래와 같이 안내하고 있어 별로 걱정하지 않았다.</p>
+<ol>
+<li>JavaScript engine의 충분히 좋은 성능</li>
+<li>action이 dispatch 될 때 대부분 reducer는 default를 실행하므로 실질적으로 실행되는 코드는 적다는 것이었다.</li>
+<li>만약 문제가 되면 패키지(redux-ignore)를 사용해서 특정 action에 특정 reducer만 작동하게끔 만들 수도 있다는 내용이었다.</li>
+</ol>
+<p>결국 문제가 되면 패키지를 이용해서 reducer를 커스터마이징 하라는 건데, 생각보다 많은 사람이 그 문제를 겪고 있는 것 같다.</p>
+<p>그래서 action, reducer를 하나하나 정의해서 퍼포먼스 문제를 일으킬 가능성을 높히고, 커스터마이징 하는 수고까지 하기엔 비용이 굉장히 크다고 판단했다.</p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a><a href="#결론" title="결론"></a>결론</h2><p>따라서 다시 정리한 내 생각은 아래와 같다.</p>
+<p><em>되도록이면 지역적으로 사용하는 데이터는 React state로 관리하자.</em></p>
+<p>생각 살짝 바꾸는게 이리 힘들 줄이야</p>
+<blockquote>
+<p><a href="http://redux.js.org/docs/faq/OrganizingState.html#do-i-have-to-put-all-my-state-into-redux-should-i-ever-use-reacts-setstate" target="_blank" rel="noopener">Q&amp;A</a>에 이와 같은 주제를 다룬 내용이 있다.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>여기서 부터 원본이다.</p>
+</blockquote>
+<p>Redux store에 데이터를 추가하는 일은 단순하면서도 귀찮은 작업이다.</p>
+<p>Action, Reducer 그리고 Action을 dispatch 하는 곳 모두 수정해야 하기 때문이다.</p>
+<p>때문에 번거로운 작업에서 벗어나기 위해 React state의 유혹을 받는다.</p>
+<p>하지만 규모가 큰 React state를 관리하기 위해 Redux store를 사용하지 않던가…!</p>
+<p><em>나는 Redux store 중에서 React state로 보관해도 문제가 없는 데이터에 대해 생각했다.</em></p>
+<p><em>그리고 고민 끝에 지역적으로 사용하는 데이터는 React state로 사용해도 되겠다는 판단을 내렸다.</em></p>
+<blockquote>
+<p>중요한 것은 local state는 React state로 관리해야 한다가 아닌, 관리해도 된다는 것이다.</p>
+</blockquote>
+<p>여기서 지역적으로 사용한다는 것은 하나 또는 일부 컴포넌트 내에서만 사용하는 데이터이다.</p>
+<p>비유하자면 데이터를 변수라고 가정하면, 지역 변수는 React state가 될 것이며, 전역 변수는 Redux Store가 될 것이다.</p>
+<p>이 데이터의 특징은 Redux store로 굳이 관리하지 않아도, 어플리케이션 전반에 걸쳐 사용 되지 않고 일부에만 사용된다.</p>
+<p>예를 들어, checkbox의 checked 데이터나 modal의 show/off 데이터는 해당 컴포넌트에만 사용된다.</p>
+<p>따라서 이러한 데이터들은 React state로 관리해도 무방하다.</p>
+<p>validation check가 필요한 input 컴포넌트의 데이터도 전반적으로 사용되는 것은 아니므로 React state로 관리해도 된다.</p>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = 'blackpost38';
+var disqus_identifier = '2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/';
+var disqus_title = '데이터를 Redux store 대신 React state에 저장해도 될까요?';
+var disqus_url = 'https://blackpost38.github.io/2018/01/13/can-i-use-data-in-react-state-instead-of-redux-store/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//blackpost38.disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/01/13/array-sort-bad-example/" class="prev">PREV</a><a href="/2018/01/13/applying-ssl-to-nginx/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 - 2019 <a href="https://blackpost38.github.io">Hyunju Choi</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"blackpost38",'auto');ga('send','pageview');</script></body></html>
